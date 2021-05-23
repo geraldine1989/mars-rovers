@@ -3,16 +3,48 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Mars rovers</title>
+		<link href="assets/style.css" rel="stylesheet" type="text/css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<h1>Mars rovers</h1>
-		<form action="" id="form">
-			<label for="inputDatas">Send your movement orders</label>
-			<textarea id="inputDatas" name="inputDatas"></textarea>
-			<button type="submit">Envoyer</button>
-		</form>
+		<h1 class="title">Mars rovers</h1>
+		<div class="container">
+			<div class="image-container">
+				<img class="image" src="assets/radar.jpg" alt="radar">
+			</div>
+			<div class="form_container">
+				<h2 class="subtitle subtitle--input">Input</h2>
+				<form action="" id="form" class="form">
+					<textarea id="inputDatas" name="inputDatas" class="input"></textarea>
+					<div class="buttons-wrapper">
+						<div class="button-container">
+							<button type="submit" class="button">ok</button>
+						</div>
+						<div class="button-container">
+							<button type="button" class="button" id="clear">clear</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<hr class="separator">
+			<div class="result">
+				<div class="result__content">
+					<h2 class="subtitle subtitle--output">Output</h2>
+					<div id="output" class="output"></div>
+				</div>
+				<div class="result__content subtitle--output">
+					<h2 class="subtitle">Errors</h2>
+					<div id="output-errors" class="output output--errors"></div>
+				</div>
+			</div>
+		</div>
 		
-		<div id="output"></div>
-		<script src="index.js"></script>
+		<script src="assets/index.js"></script>
 	</body>
 </html>

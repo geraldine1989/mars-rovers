@@ -20,7 +20,7 @@ describe("Form test", () => {
     cy.contains('div', '1 3 N')
     cy.contains('div', '5 1 E')
     cy.contains('div', '0 0 S')
-    cy.contains('div', '4 3 N')
+    cy.contains('div', '4 3 N');
   });
 });
 
@@ -34,7 +34,7 @@ describe("Check input errors test", () => {
       .should("have.value", "5 5.5\n1 2 N\nLMLMLMLMM");
 
     cy.get("form").submit();
-    cy.contains('div', 'The maximum x and y coordinates of the grid must be integer numbers greater than zero.')
+    cy.contains('div', 'The maximum x and y coordinates of the grid must be integer numbers greater than zero.');
   });
 
   it("Can prevent negativ number for upper-right coordinates", () => {
@@ -111,3 +111,39 @@ describe("Check input errors test", () => {
 
 });
 
+describe("Clear test", () => {
+  it("Can clear textarea", () => {
+    cy.visit("/");
+    cy.get("form");
+
+    cy.get('textarea[name="inputDatas"]')
+      .type("test")
+      .should("have.value", "test");
+
+    cy.get('#clear').click();
+
+    cy.get('textarea[name="inputDatas"]')
+      .should("have.value", "");
+  });
+
+  it("Can clear output", () => {
+    cy.visit("/");
+    cy.get("form");
+
+    cy.get('textarea[name="inputDatas"]')
+      .type("5 5{enter}1 2 N{enter}LMLMLMLMM")
+      .should("have.value", "5 5\n1 2 N\nLMLMLMLMM");
+
+    cy.get("form").submit();
+
+    cy.get('textarea[name="inputDatas"]')
+      .type("error generation")
+      .should("have.value", "5 5\n1 2 N\nLMLMLMLMMerror generation");
+
+    cy.get("form").submit();
+
+    cy.get('#clear').click();
+    cy.get('.output__content').should('not.exist');
+  });
+
+});

@@ -1,5 +1,7 @@
 const form = document.getElementById('form');
-const output = document.getElementById('output');
+const outputElement = document.getElementById('output');
+const outputErrorsElement = document.getElementById('output-errors');
+const clearElement = document.getElementById('clear');
 
 form.addEventListener("submit", event => {
   event.preventDefault();
@@ -152,17 +154,23 @@ const sendDatas = () => {
 	if(errors.length > 0) {
 		errors.forEach((error) => {
 			const outputData = document.createElement('div');
-			outputData.style.color = 'red';
 			outputData.textContent = error;
-			output.appendChild(outputData);
+			outputData.classList.add('output__content');
+			outputData.classList.add('output__content--errors');
+			outputErrorsElement.appendChild(outputData);
 		})
 	} else {
 		result.forEach((element) => {
 			const outputData = document.createElement('div');
-			outputData.style.color = 'blue';
 			outputData.textContent = element;
-			output.appendChild(outputData);
+			outputData.classList.add('output__content');
+			outputElement.appendChild(outputData);
 		})
 	}
-	
 }
+
+clearElement.addEventListener("click", () => {
+	outputElement.innerHTML = '';
+	outputErrorsElement.innerHTML = '';
+	form['inputDatas'].value = '';
+});
