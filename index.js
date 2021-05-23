@@ -1,10 +1,10 @@
 const form = document.getElementById('form');
 const output = document.getElementById('output');
 
-form.addEventListener("submit", function (event) {
-	event.preventDefault();
+form.addEventListener("submit", event => {
+  event.preventDefault();
 	sendDatas();
-})
+});
 
 const sanitarize = (data) => {
 	return data.replaceAll(/\s/g,'');
@@ -129,7 +129,7 @@ const sendDatas = () => {
 						}
 					}
 
-					switch (currentMovement) {
+					switch (currentMovement.toUpperCase()) {
 						case 'M' :
 							moveRover();
 							break;
