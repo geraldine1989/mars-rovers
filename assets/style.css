@@ -142,11 +142,17 @@ body {
 	}
 
 	.form_container {
-		width: 35%;
+		width: 40%;
+	}
+
+	.input {
+		height: 15rem;
 	}
 
 	.subtitle {
+		font-size: 2rem;
 		margin: 0;
+		text-transform: uppercase;
 	}
 
 	.subtitle--output {
@@ -156,7 +162,7 @@ body {
 
 	.image-container {
 		align-items: center;
-    width: 30%;
+    width: 25%;
 	}
 
 	.image {
@@ -170,6 +176,11 @@ body {
 
 	.result__content {
 		width: 100%;
+	}
+
+	.buttons-wrapper {
+		justify-content: flex-start;
+		column-gap: 2rem;
 	}
 
 	.button-container {
@@ -190,7 +201,7 @@ body {
 		background: linear-gradient(135deg, #000000 0%, #041314 44%, #05181A 100%);
 	}
 	.output {
-		height: 15rem;
+		height: 10rem;
 		margin-bottom: 1.5rem;
 		width: auto;
 	}

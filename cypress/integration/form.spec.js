@@ -3,7 +3,7 @@ describe("Form test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("test")
       .should("have.value", "test");
   });
@@ -12,7 +12,7 @@ describe("Form test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1 2 N{enter}LMLMLMLMM{enter}3 3 E{enter}MMRMMRMRRM{enter}0 0 S{enter}MMM{enter}4 1 n{enter}mm")
       .should("have.value", "5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM\n0 0 S\nMMM\n4 1 n\nmm");
 
@@ -29,7 +29,7 @@ describe("Check input errors test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5.5{enter}1 2 N{enter}LMLMLMLMM")
       .should("have.value", "5 5.5\n1 2 N\nLMLMLMLMM");
 
@@ -37,11 +37,11 @@ describe("Check input errors test", () => {
     cy.contains('div', 'The maximum x and y coordinates of the grid must be integer numbers greater than zero.');
   });
 
-  it("Can prevent negativ number for upper-right coordinates", () => {
+  it("Can prevent negative number for upper-right coordinates", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 -5{enter}1 2 N{enter}LMLMLMLMM")
       .should("have.value", "5 -5\n1 2 N\nLMLMLMLMM");
 
@@ -53,7 +53,7 @@ describe("Check input errors test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1 2 N{enter}LMX")
       .should("have.value", "5 5\n1 2 N\nLMX");
 
@@ -65,7 +65,7 @@ describe("Check input errors test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1 2 -{enter}LM")
       .should("have.value", "5 5\n1 2 -\nLM");
 
@@ -77,7 +77,7 @@ describe("Check input errors test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1 -2 N{enter}LM")
       .should("have.value", "5 5\n1 -2 N\nLM");
 
@@ -89,7 +89,7 @@ describe("Check input errors test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1.6 2 N{enter}LM")
       .should("have.value", "5 5\n1.6 2 N\nLM");
 
@@ -101,7 +101,7 @@ describe("Check input errors test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1 6 N{enter}LMLMLMLMM")
       .should("have.value", "5 5\n1 6 N\nLMLMLMLMM");
 
@@ -116,13 +116,13 @@ describe("Clear test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("test")
       .should("have.value", "test");
 
     cy.get('#clear').click();
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .should("have.value", "");
   });
 
@@ -130,13 +130,13 @@ describe("Clear test", () => {
     cy.visit("/");
     cy.get("form");
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("5 5{enter}1 2 N{enter}LMLMLMLMM")
       .should("have.value", "5 5\n1 2 N\nLMLMLMLMM");
 
     cy.get("form").submit();
 
-    cy.get('textarea[name="inputDatas"]')
+    cy.get('textarea[name="inputData"]')
       .type("error generation")
       .should("have.value", "5 5\n1 2 N\nLMLMLMLMMerror generation");
 
