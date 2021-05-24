@@ -5,35 +5,31 @@ const clearElement = document.getElementById('clear');
 
 form.addEventListener("submit", event => {
   event.preventDefault();
-	sendDatas();
+	sendData();
 });
 
-const sanitarize = (data) => {
-	return data.replaceAll(/\s/g,'');
-}
-
-const sendDatas = () => {
-	const inputDatas = form['inputDatas'].value.split('\n');
+const sendData = () => {
+	const inputData = form['inputData'].value.split('\n');
 	let result = [];
 	let errors = [];
 
-	if (inputDatas.length <= 0) {
-		errors.push('Please enter datas');
+	if (inputData.length <= 0) {
+		errors.push('Please enter data');
 	}
 	// Get maximal grid values
-	const maxX = parseFloat(inputDatas[0].split(' ')[0]);
-	const maxY = parseFloat(inputDatas[0].split(' ')[1]);
+	const maxX = parseFloat(inputData[0].split(' ')[0]);
+	const maxY = parseFloat(inputData[0].split(' ')[1]);
 	if (!Number.isInteger(maxX) || maxX <= 0 || !Number.isInteger(maxY) || maxY <= 0) {
 		errors.push('The maximum x and y coordinates of the grid must be integer numbers greater than zero.');
 	}
 
-	// Get rovers datas
-	inputDatas.shift();
+	// Get rovers data
+	inputData.shift();
 
 	// separation of data concerning the position and movements of rovers
 	let positions = [];
 	let movements = [];
-	inputDatas.forEach((value, index) => {
+	inputData.forEach((value, index) => {
 		if (index % 2 === 0) {
 			positions.push(value);
 		} else {
@@ -41,7 +37,7 @@ const sendDatas = () => {
 		}
 	});
 
-	// Movement execution when positions and movements indexes are the same 
+	// Movement execution when positions and movements indexes are the same
 	positions.forEach((position, positionIndex) => {
 		movements.forEach((movement, movementIndex) => {
 			if(positionIndex === movementIndex) {
@@ -58,75 +54,75 @@ const sendDatas = () => {
 				if (!Number.isInteger(y) || y < 0 || y > maxY) {
 					errors.push(['The y coordinate of rover', positionIndex + 1, 'must be an integer between 0 and', maxY].join(' '));
 				}
-				if(orientation !== 'N' && orientation !== 'S' && orientation !== 'E' && orientation !== 'O') {
+				if(orientation !== 'N' && orientation !== 'S' && orientation !== 'E' && orientation !== 'W') {
 					errors.push(['Undefined character for rover ', movementIndex + 1, ' orientation. Please enter N, O, S or E value'].join(' '));
 				}
 
 				movement.split('').forEach((currentMovement) => {
 					const moveRover = () => {
 						switch (orientation) {
-							case 'N': 
+							case 'N':
 								// the rover must stay inside the grid
 								if (y + 1 <= maxY) {
 									y = y + 1;
 								}
 								break;
-							case 'S': 
+							case 'S':
 								// the rover must stay inside the grid
 								if (y - 1 >= 0) {
 									y = y - 1;
 								}
 								break;
-							case 'E': 
+							case 'E':
 								// the rover must stay inside the grid
 								if (x + 1 <= maxX) {
 									x = x + 1;
 								}
 								break;
-							case 'O': 
+							case 'W':
 								// the rover must stay inside the grid
 								if (x - 1 >= 0) {
 									x = x - 1;
 								}
 								break;
-							default: 
+							default:
 							return;
 						}
 					}
 
 					const turnLeft = () => {
 						switch (orientation) {
-							case 'N': 
-								orientation = 'O';
+							case 'N':
+								orientation = 'W';
 								break;
-							case 'S': 
+							case 'S':
 								orientation = 'E';
 								break;
-							case 'E': 
+							case 'E':
 								orientation = 'N';
 								break;
-							case 'O': 
+							case 'W':
 								orientation = 'S';
 								break;
-							default: 
+							default:
 								return;
 						}
 					}
 					const turnRight = () => {
 						switch (orientation) {
-							case 'N': 
+							case 'N':
 								orientation = 'E';
 								break;
-							case 'S': 
-								orientation = 'O';
+							case 'S':
+								orientation = 'W';
 								break;
-							case 'E': 
+							case 'E':
 								orientation = 'S';
 								break;
-							case 'O': 
+							case 'W':
 								orientation = 'N';
 								break;
-							default: 
+							default:
 								return;
 						}
 					}
@@ -135,13 +131,13 @@ const sendDatas = () => {
 						case 'M' :
 							moveRover();
 							break;
-						case 'L' : 
+						case 'L' :
 							turnLeft();
 							break;
-						case 'R' : 
+						case 'R' :
 							turnRight();
 							break;
-						default: 
+						default:
 							errors.push(['Undefined movement ', currentMovement,' for the rover ', movementIndex + 1, '. Please enter M, L or R'].join(' '));
 					}
 
@@ -172,5 +168,5 @@ const sendDatas = () => {
 clearElement.addEventListener("click", () => {
 	outputElement.innerHTML = '';
 	outputErrorsElement.innerHTML = '';
-	form['inputDatas'].value = '';
+	form['inputData'].value = '';
 });

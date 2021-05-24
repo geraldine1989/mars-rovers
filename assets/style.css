@@ -128,7 +128,7 @@ body {
 	overflow: auto;
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1024px) {
 	.title {
 		margin: 0;
 		margin-bottom: 2rem;
@@ -142,11 +142,17 @@ body {
 	}
 
 	.form_container {
-		width: 35%;
+		width: 40%;
+	}
+
+	.input {
+		height: 15rem;
 	}
 
 	.subtitle {
+		font-size: 2rem;
 		margin: 0;
+		text-transform: uppercase;
 	}
 
 	.subtitle--output {
@@ -156,11 +162,11 @@ body {
 
 	.image-container {
 		align-items: center;
-    width: 30%;
+    width: 25%;
 	}
 
 	.image {
-		height: fit-content;
+		height: auto;
 	}
 
 	.result {
@@ -172,10 +178,19 @@ body {
 		width: 100%;
 	}
 
+	.buttons-wrapper {
+		justify-content: flex-start;
+    column-gap: 0;
+	}
+
 	.button-container {
 		height: 9rem;
     width: 9rem;
 	}
+
+  .button-container:first-child {
+    margin-right: 2rem;
+  }
 
 	.button {
 		font-size: 1rem;
@@ -190,7 +205,7 @@ body {
 		background: linear-gradient(135deg, #000000 0%, #041314 44%, #05181A 100%);
 	}
 	.output {
-		height: 15rem;
+		height: 10rem;
 		margin-bottom: 1.5rem;
 		width: auto;
 	}
